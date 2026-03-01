@@ -57,9 +57,9 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Fill in start
     dataCommand = 'DATA\r\n'
     clientSocket.send(dataCommand.encode())
-    recv_data = clientSocket.recv(1024).decode()
-    print(recv_data)
-    if recv_data[:3] != '354':
+    recv4 = clientSocket.recv(1024).decode()
+    print(recv4)
+    if recv4[:3] != '354':
         print('354 reply not received from server for DATA.')
     else:
         print('354 reply received from server.')
@@ -75,10 +75,9 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Fill in start
     endmsg = "\r\n.\r\n"
     clientSocket.send(endmsg.encode())
-    recv_message = clientSocket.recv(1024).decode()
-    recv_data = clientSocket.recv(1024).decode()
-    print(recv_data)
-    if recv_data[:3] != '250':
+    recv5 = clientSocket.recv(1024).decode()
+    print(recv5)
+    if recv5[:3] != '250':
         print('250 reply not received from server for DATA.')
     else:
         print('250 reply received from server.')
@@ -88,9 +87,9 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Fill in start
     quitCommand = 'QUIT\r\n'
     clientSocket.send(quitCommand.encode())
-    recv_quit = clientSocket.recv(1024).decode()
-    print(recv_quit)
-    if recv_quit[:3] != '221':
+    recv6 = clientSocket.recv(1024).decode()
+    print(recv6)
+    if recv6[:3] != '221':
         print('221 reply not received from server for QUIT.')
     else:
         print('Session terminated gracefully.')
@@ -99,4 +98,4 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
 
 if __name__ == '__main__':
-    smtp_client(1025, '127.0.0.1')
+    smtp_client(1025,'127.0.0.1')
