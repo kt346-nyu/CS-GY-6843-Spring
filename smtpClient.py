@@ -68,12 +68,13 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Send message data.
     # Fill in start
     message = "Subject: SMTP Python Test \r\n\r\nThis is the body of my email for my Python server assignment \r\n"
+    clientSocket.send(message.encode())
     # Fill in end
 
     # Message ends with a single period, send message end and handle server response.
     # Fill in start
     endmsg = "\r\n.\r\n"
-    clientSocket.send((message + endmsg).encode())
+    clientSocket.send(endmsg.encode())
     recv_message = clientSocket.recv(1024).decode()
     recv_data = clientSocket.recv(1024).decode()
     print(recv_data)
