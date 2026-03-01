@@ -5,6 +5,8 @@ def smtp_client(port=587, mailserver='smtp.gmail.com'):
 
     msg = "\r\n My message"
     endmsg = "\r\n.\r\n"
+    sender_email = "kimberly.thomas82@gmail.com"
+    receiver_email = "kt346@nyu.edu"
 
     # Choose a mail server (e.g. Google mail server) if you want to verify the script beyond GradeScope
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
@@ -58,7 +60,7 @@ def smtp_client(port=587, mailserver='smtp.gmail.com'):
 
     # Send message data.
     # Fill in start
-    clientSocket.send(msg.encode())
+    clientSocket.send((sender_email + receiver_email + msg).encode())
     # Fill in end
 
     # Message ends with a single period, send message end and handle server response.
