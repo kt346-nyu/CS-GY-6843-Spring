@@ -1,3 +1,4 @@
+import socket
 from socket import *
 
 def smtp_client(port=1025, mailserver='127.0.0.1'):
@@ -8,7 +9,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Choose a mail server (e.g. Google mail server) if you want to verify the script beyond GradeScope
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
     # Fill in start
-    clientSocket = socket(AF_INET, SOCK_STREAM)
+    clientSocket = socket(AF_INET , SOCK_STREAM)
     clientSocket.connect((mailserver, port))
     # Fill in end
 
@@ -27,8 +28,8 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Send MAIL FROM command and handle server response.
     # Fill in start
-    mailFromCmd = 'MAIL FROM:<sender@example.com>\r\n'
-    clientSocket.send(mailFromCmd.encode())
+    mailFromCommand = 'MAIL FROM:<kt346@nyu.edu>\r\n'
+    clientSocket.send(mailFromCommand.encode())
     recv2 = clientSocket.recv(1024).decode()
     print(recv2)
     if recv2[:3] != '250':
@@ -37,8 +38,8 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Send RCPT TO command and handle server response.
     # Fill in start
-    rcptToCmd = 'RCPT TO:<recipient@example.com>\r\n'
-    clientSocket.send(rcptToCmd.encode())
+    rcptToCommand = 'RCPT TO:<kt346@nyu.edu>\r\n'
+    clientSocket.send(rcptToCommand.encode())
     recv3 = clientSocket.recv(1024).decode()
     print(recv3)
     if recv3[:3] != '250':
@@ -47,8 +48,8 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Send DATA command and handle server response.
     # Fill in start
-    dataCmd = 'DATA\r\n'
-    clientSocket.send(dataCmd.encode())
+    dataCommand = 'DATA\r\n'
+    clientSocket.send(dataCommand.encode())
     recv4 = clientSocket.recv(1024).decode()
     print(recv4)
     if recv4[:3] != '354':
@@ -82,8 +83,6 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     else:
         print('Session terminated gracefully.')
     # Fill in end
-
-    clientSocket.close()
 
 if __name__ == '__main__':
     smtp_client(1025,'127.0.0.1')
