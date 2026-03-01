@@ -10,7 +10,7 @@ def smtp_client(port=587, mailserver='smtp.gmail.com'):
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
     # Fill in start
     clientSocket = socket(AF_INET , SOCK_STREAM)
-    clientSocket.connect((mailserver, port))
+    clientSocket.connect((port, mailserver))
     # Fill in end
 
     recv = clientSocket.recv(1024).decode()
