@@ -43,7 +43,7 @@ def encrypt_with_aes(input_string, password, salt):
 def decrypt_with_aes(encrypted_data, password, salt):
     key = generate_aes_key(password, salt)
     f = Fernet(key)
-    decrypted_data = f.decrypt(encrypted_data)  # call the Fernet decrypt method
+    decrypted_data = f.decrypt(encrypted_data.decode('utf-8'))  # call the Fernet decrypt method
     return decrypted_data.decode('utf-8')
 
 
