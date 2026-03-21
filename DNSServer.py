@@ -159,7 +159,12 @@ def run_dns_server():
 
             # Send the response back to the client using the `server_socket.sendto` method and put the response to_wire(), return to the addr you received from
             print("Responding to request:", qname)
-            server_socket.sendto_wire(response, addr)
+            response_data = response.to_wire()
+            server_socket.sendto(response_data, addr)
+
+
+
+
         except KeyboardInterrupt:
             print('\nExiting...')
             server_socket.close()
