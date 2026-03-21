@@ -105,8 +105,6 @@ dns_records = {
         dns.rdatatype.MX: [10, 'mxa-00256a01.gslb.pphosted.com.'],
         dns.rdatatype.NS: 'ns1.nyu.edu.',
         dns.rdatatype.TXT: ('AlwaysWatching',),
-
-
     },
 
 }
