@@ -34,16 +34,16 @@ def generate_aes_key(password, salt):
 
 # Lookup details on fernet in the cryptography.io documentation
 def encrypt_with_aes(input_string, password, salt):
-    key = generate_aes_key(input_string, salt)
+    key = generate_aes_key(password, salt)
     f = Fernet(key)
     encrypted_data = f.encrypt(password.encode('utf-8'))  # call the Fernet encrypt method
     return encrypted_data
 
 
 def decrypt_with_aes(encrypted_data, password, salt):
-    key = generate_aes_key(encrypted_data, salt)
+    key = generate_aes_key(password, salt)
     f = Fernet(key)
-    decrypted_data = f.decryot(encrypted_data)  # call the Fernet decrypt method
+    decrypted_data = f.decrypt(encrypted_data)  # call the Fernet decrypt method
     return decrypted_data.decode('utf-8')
 
 
@@ -96,8 +96,7 @@ dns_records = {
     },
 
     'yahoo.com': {
-        dns.rdatatype.A: '192.168.1.105', 
-    },
+        dns.rdatatype.A: '192.168.1.105', },
 
     'nyu.edu': {
         dns.rdatatype.A: '192.168.1.106',
@@ -105,6 +104,8 @@ dns_records = {
         dns.rdatatype.MX: [10, 'mxa-00256a01.gslb.pphosted.com.'],
         dns.rdatatype.NS: 'ns1.nyu.edu.',
         dns.rdatatype.TXT: ('AlwaysWatching',),
+
+
     },
 
 }
@@ -184,5 +185,5 @@ def run_dns_server_user():
 
 if __name__ == '__main__':
     run_dns_server_user()
-    # print("Encrypted Value:", encrypted_value)
-    # print("Decrypted Value:", decrypted_value)
+    print("Encrypted Value:", encrypted_value)
+    print("Decrypted Value:", decrypted_value)
